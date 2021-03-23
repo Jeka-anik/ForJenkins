@@ -1,52 +1,30 @@
-node {
- properties([
-  pipelineTriggers([
-   [$class: 'GenericTrigger',
-    genericVariables: [
-     [key: 'ref', value: '$.ref'],
-     [
-      key: 'before',
-      value: '$.before',
-      expressionType: 'JSONPath', //Optional, defaults to JSONPath
-      regexpFilter: '', //Optional, defaults to empty string
-      defaultValue: '' //Optional, defaults to empty string
-     ]
-    ],
-    genericRequestVariables: [
-     [key: 'requestWithNumber', regexpFilter: '[^0-9]'],
-     [key: 'requestWithString', regexpFilter: '']
-    ],
-    genericHeaderVariables: [
-     [key: 'headerWithNumber', regexpFilter: '[^0-9]'],
-     [key: 'headerWithString', regexpFilter: '']
-    ],
+pipeline {
+  agent any
+  triggers {
+    GenericTrigger(
+     genericVariables: [
+      [key: 'ref', value: '$.ref']
+     ],
 
-    causeString: 'Triggered on $ref',
+     causeString: 'Triggered on $ref',
 
-    token: 'abc123',
-    tokenCredentialId: '',
+     token: 'abc123',
+     tokenCredentialId: '',
 
-    printContributedVariables: true,
-    printPostContent: true,
+     printContributedVariables: true,
+     printPostContent: true,
 
-    silentResponse: false,
+     silentResponse: false,
 
-    regexpFilterText: '$ref',
-    regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
-   ]
-  ])
- ])
-
- stage("build") {
-  sh '''
-  echo Variables from shell:
-  echo ref $ref
-  echo before $before
-  echo requestWithNumber $requestWithNumber
-  echo requestWithString $requestWithString
-  echo headerWithNumber $headerWithNumber
-  echo headerWithString $headerWithString
-  '''
- }
+     regexpFilterText: '$ref',
+     regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+    )
+  }
+  stages {
+    stage('Some step') {
+      steps {
+        sh "echo $ref"
+      }
+    }
+  }
 }
-
