@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Two step') {
       steps {
-        def script_bash = libraryResource 'bash ./script.sh'
+        sh './script.sh'
       }
     }
   }
