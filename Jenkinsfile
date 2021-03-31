@@ -6,5 +6,10 @@ pipeline {
         sh 'echo "Hello "'
       }
     }
+    stage('Two step') {
+      steps {
+        sh 'ls -al'
+      }
+    }
   }
 }
