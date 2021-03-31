@@ -4,9 +4,9 @@ pipeline {
     GenericTrigger causeString: 'Generic Cause', regexpFilterExpression: '', regexpFilterText: '', token: '123', tokenCredentialId: ''
   }
   stages {
-    stage('Some step') {
+    stage('First step') {
       steps {
-        sh "echo $ref"
+        sh 'echo "Hello "'
       }
     }
   }
