@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Two step') {
       steps {
-        sh './script.sh'
+        sh 'bash ./script.sh'
       }
     }
   }
