@@ -11,9 +11,9 @@ pipeline {
         sh 'mysql -u root -ppassword -e \'SELECT * FROM tourneys;\' days > /home/ubuntu/workspace/BackBase/test.txt'
       }
     }
-    stage('Ololo step') {
+    stage('Dump step') {
       steps {
-        sh 'ls -al'
+        sh 'mysqldump -u root -ppassword days > /home/ubuntu/workspace/BackBase/dump.sql'
       }
     }
   }
