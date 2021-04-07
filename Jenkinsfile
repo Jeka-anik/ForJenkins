@@ -6,14 +6,14 @@ pipeline {
         sh 'echo "Hello "'
       }
     }
+    stage('Two step') {
+      steps {
+        sh 'mysql -u root -ppassword -e 'SELECT * FROM tourneys;' days > ~/workspace/BackBase/test.txt'
+      }
+    }
     stage('Ololo step') {
       steps {
         sh 'ls -al'
-      }
-    }
-    stage('Two step') {
-      steps {
-        sh './script.sh'
       }
     }
   }
