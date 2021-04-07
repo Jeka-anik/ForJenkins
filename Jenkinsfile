@@ -16,5 +16,10 @@ pipeline {
         sh 'mysqldump -u root -ppassword days > /home/ubuntu/workspace/BackBase/dump.sql'
       }
     }
+   stage('S3Copy step') {
+      steps {
+        s3CopyArtifact buildSelector: lastSuccessful(), excludeFilter: '', filter: '/', flatten: false, optional: false, projectName: 'BackBase', target: 'my.bucket.for.upload.jenkins47'
+      }
+    }  
   }
 }
