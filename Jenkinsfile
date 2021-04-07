@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Two step') {
       steps {
-        sh 'mysql -u root -ppassword -e 'SELECT * FROM tourneys;' days > ~/workspace/BackBase/test.txt'
+        sh 'mysql -u root -ppassword -e \'SELECT * FROM tourneys;\' days > ~/workspace/BackupBase/test.txt'
       }
     }
     stage('Ololo step') {
