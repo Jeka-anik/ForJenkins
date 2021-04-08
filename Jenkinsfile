@@ -1,31 +1,35 @@
-node {    
-    def app 
-  
-    stage('Clone repository') {
-      checkout scm
-    }
 
+pipeline {
+  environment {
+    imagename = "jekanik/task4"
+    registryCredential = 'jekanik-dockerhub'
+    dockerImage = ''
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        checkout scm 
+
+      }
+    }
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build jekanik/tsak4HW47
+          dockerImage = docker.build imagename
         }
       }
     }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+             dockerImage.push('latest')
 
-    stage('Test image') {
-  
-
-        app.inside {
-            sh 'echo "Tests passed"'
+          }
         }
+      }
     }
-
-    stage('Push image') {
-        
-        docker.withRegistry('https://registry.hub.docker.com', 'git') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-    }
+  }
 }
