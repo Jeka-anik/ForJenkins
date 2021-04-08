@@ -1,3 +1,3 @@
-FROM node:14-alpine
+FROM alpine
+RUN apk update && apk upgrade && apk add bash
 
-RUN apk add -U subversion
