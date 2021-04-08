@@ -16,8 +16,11 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build imagename
-        }
+          // This step should not normally be used in your script. Consult the inline help for details.
+          withDockerContainer('jekanik/task4') {
+          // some block
+          }
+         }
       }
     }
     stage('Deploy Image') {
