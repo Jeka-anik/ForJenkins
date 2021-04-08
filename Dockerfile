@@ -1,4 +1,4 @@
-FROM node:latest as node
+FROM ubuntu
 RUN mkdir -p /app
 WORKDIR /app
 COPY package*.html /app/
