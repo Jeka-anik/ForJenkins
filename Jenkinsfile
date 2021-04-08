@@ -7,9 +7,12 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-  
-       app = docker.build("jekanik/forJenkHw47")
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build jekanik/tsak4HW47
+        }
+      }
     }
 
     stage('Test image') {
