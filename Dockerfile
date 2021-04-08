@@ -1,6 +1,2 @@
-FROM ubuntu
-RUN mkdir -p /app
-WORKDIR /app
-COPY package*.html /app/
-COPY . /app/
-EXPOSE 4200
+FROM ubuntu:20.04
+RUN apt update && apt upgrade -y
