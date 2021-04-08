@@ -1,10 +1,9 @@
-pipeline {
-  agent any
+def mvnHome
 
+node('node'){
+  
     stage('Clone repository') {
-      
-
-        checkout scm
+      checkout scm
     }
 
     stage('Building image') {
