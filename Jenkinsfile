@@ -17,9 +17,14 @@ pipeline {
     agent {
         docker {
             image "project-build:${DOCKER_IMAGE_BRANCH}"
+            reuseNode true
+            label "build-image"
         }
     }
-   }
+    steps {
+      sh 'echo "Hello "'
+    }
+}
     stage('Deploy Image') {
       steps{
         script {
