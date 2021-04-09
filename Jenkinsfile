@@ -24,6 +24,8 @@ pipeline {
             agent {
                 docker {
                     image "jekanik/project-build:${BUILD_ID}"
+                    registryUrl 'https://hub.docker.com/repository/docker/jekanik/project-build'
+                    registryCredentialsId 'git'
                 }
             }
             steps {
