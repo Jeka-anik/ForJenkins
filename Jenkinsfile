@@ -24,6 +24,7 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile'
+                    registryUrl 'https://hub.docker.com/repository/docker/jekanik/project-build'
                   //  label 'my-defined-label'
                     registryCredentialsId 'git'
                 }
