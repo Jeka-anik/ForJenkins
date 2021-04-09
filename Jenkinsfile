@@ -25,7 +25,6 @@ pipeline {
                 dockerfile {
                     filename 'Dockerfile'
                     label 'my-defined-label'
-                  //  registryUrl 'https://myregistry.com/'
                     registryCredentialsId 'git'
                 }
             }
