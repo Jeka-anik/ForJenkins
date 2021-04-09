@@ -24,7 +24,6 @@ pipeline {
             agent {
                 docker {
                     image "project-build:${BUILD_ID}"
-                    label "build-image"
                 }
             }
             steps {
