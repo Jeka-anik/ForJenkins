@@ -2,7 +2,7 @@
 pipeline {
   environment {
     imagename = "jekanik/task4"
-    registryCredential = 'jekanik-dockerhub'
+    registryCredential = 'git'
     dockerImage = ''
   }
   agent any
