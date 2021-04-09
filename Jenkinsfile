@@ -16,7 +16,7 @@ pipeline {
   
   stage("Prepare build image") {
             steps {
-                sh "docker build -f Dockerfile.build . -t project-build:${BUILD_ID}"
+                sh "docker build -f Dockerfile . -t project-build:${BUILD_ID}"
             }
         }
 
