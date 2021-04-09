@@ -16,22 +16,14 @@ pipeline {
   
   stage("Prepare build image") {
             steps {
-                sh "docker build -f Dockerfile . -t project-build:${BUILD_ID}"
+                sh "docker build -f Dockerfile . -t jekanik/project-build:${BUILD_ID}"
             }
         }
 
-      stage("Registry") {
-            steps {
-                // This step should not normally be used in your script. Consult the inline help for details.
-                withDockerRegistry(credentialsId: 'git', url: 'https://hub.docker.com/repository/docker/jekanik/project-build') {
-               // some block
-                }
-            }
-        }
-        stage("Build project") {
+   stage("Build project") {
             agent {
                 docker {
-                    image "project-build:${BUILD_ID}"
+                    image "jekanik/project-build:${BUILD_ID}"
                 }
             }
             steps {
