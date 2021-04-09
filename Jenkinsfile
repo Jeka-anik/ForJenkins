@@ -13,15 +13,11 @@ pipeline {
 
       }
     }
-    stage('Building image') {
-      steps{
-        script {
-          // This step should not normally be used in your script. Consult the inline help for details.
-          withDockerContainer('jekanik/myhello:tagname'){
-          // some block
-          }
-         }
-      }
+   stage("Build project") {
+    agent {
+        docker {
+            image "project-build:${DOCKER_IMAGE_BRANCH}"
+        }
     }
     stage('Deploy Image') {
       steps{
