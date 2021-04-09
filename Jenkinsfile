@@ -13,7 +13,7 @@ pipeline {
 
       }
     }
-  }
+  
   stage("Prepare build image") {
             steps {
                 sh "docker build -f Dockerfile.build . -t project-build:${BUILD_ID}"
@@ -32,5 +32,5 @@ pipeline {
                 sh "yarn build"
             }
         }
-
+  }
 }
