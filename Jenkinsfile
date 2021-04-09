@@ -20,6 +20,14 @@ pipeline {
             }
         }
 
+      stage("Registry") {
+            steps {
+                // This step should not normally be used in your script. Consult the inline help for details.
+                withDockerRegistry(credentialsId: 'git', url: 'https://hub.docker.com/repository/docker/jekanik/project-build') {
+               // some block
+                }
+            }
+        }
         stage("Build project") {
             agent {
                 docker {
