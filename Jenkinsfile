@@ -19,6 +19,7 @@ pipeline {
             image "project-build:${DOCKER_IMAGE_BRANCH}"
         }
     }
+   }
     stage('Deploy Image') {
       steps{
         script {
