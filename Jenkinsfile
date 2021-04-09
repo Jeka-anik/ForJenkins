@@ -28,8 +28,7 @@ pipeline {
                 }
             }
             steps {
-                sh "yarn"
-                sh "yarn build"
+                sh 'echo "hello"'
             }
         }
   }
