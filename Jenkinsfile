@@ -13,28 +13,24 @@ pipeline {
 
       }
     }
-   stage("Build project") {
-    agent {
-        docker {
-            image "project-build:${DOCKER_IMAGE_BRANCH}"
-            reuseNode true
-            label "build-image"
-        }
-    }
-    steps {
-      sh 'echo "Hello "'
-    }
-}
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
-
-          }
-        }
-      }
-    }
   }
+  stage("Prepare build image") {
+            steps {
+                sh "docker build -f Dockerfile.build . -t project-build:${BUILD_ID}"
+            }
+        }
+
+        stage("Build project") {
+            agent {
+                docker {
+                    image "project-build:${BUILD_ID}"
+                    label "build-image"
+                }
+            }
+            steps {
+                sh "yarn"
+                sh "yarn build"
+            }
+        }
+
 }
