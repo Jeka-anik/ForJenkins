@@ -22,10 +22,11 @@ pipeline {
 
    stage("Build project") {
             agent {
-                docker {
-                    image "jekanik/project-build:${BUILD_ID}"
-                    registryUrl 'https://hub.docker.com/repository/docker/jekanik/project-build'
-                    registryCredentials 'git'
+                dockerfile {
+                    filename 'Dockerfile'
+                    label 'my-defined-label'
+                  //  registryUrl 'https://myregistry.com/'
+                    registryCredentialsId 'git'
                 }
             }
             steps {
