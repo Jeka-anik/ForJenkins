@@ -17,21 +17,8 @@ pipeline {
   stage("Prepare build image") {
             steps {
                 sh "docker build -f Dockerfile . -t jekanik/project-build:${BUILD_ID}"
-            }
-        }
-
-   stage("Build project") {
-            agent {
-                dockerfile {
-                    filename 'Dockerfile'
-
-                }
-            }
-            steps {
-                              // This step should not normally be used in your script. Consult the inline help for details.
-              withDockerRegistry(credentialsId: 'git', url: 'jekanik/project-build') {
-                  // some block
-              }
+                sh "docker login -u jekanik -p${password}"
+                sh "docker push jekanik/project-build:${BUILD_ID}"
             }
         }
   }
