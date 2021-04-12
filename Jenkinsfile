@@ -24,13 +24,14 @@ pipeline {
             agent {
                 dockerfile {
                     filename 'Dockerfile'
-                    registryUrl 'https://hub.docker.com/repository/docker/jekanik/project-build'
-                  //  label 'my-defined-label'
-                    registryCredentialsId 'git'
+
                 }
             }
             steps {
-                sh 'echo "hello"'
+                              // This step should not normally be used in your script. Consult the inline help for details.
+              withDockerRegistry(credentialsId: 'git', url: 'jekanik/project-build') {
+                  // some block
+              }
             }
         }
   }
