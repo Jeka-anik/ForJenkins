@@ -44,12 +44,10 @@ pipeline {
             steps {
                 dir('task1HW50/ec2_pipeline/'){
                     script {
-                        try {
-                            sh "terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' \
+                        sh "terraform plan -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' \
                         -out terraform.tfplan;echo \$? > status"
                         stash name: "terraform-plan", includes: "terraform.tfplan"
                     }
-                }
             }
         }
         stage('TerraformApply'){
