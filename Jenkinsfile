@@ -28,7 +28,7 @@ pipeline {
         stage('TerraformFormat'){
             steps {
                 dir('task1HW50/ec2_pipeline/'){
-                    sh "terraform fmt -list=true -write=false -diff=true -check=true"
+                    sh "terraform fmt -list=true -write=false -diff=true"
                 }
             }
         }
