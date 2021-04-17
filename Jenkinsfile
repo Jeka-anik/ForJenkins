@@ -40,7 +40,7 @@ pipeline {
         stage('Create workspace') {
             steps {
                 //sh 'terraform init -input=false'
-                sh 'terraform workspace new ${environment}'
+                //sh 'terraform workspace new ${environment}'
                 sh 'pwd; terraform workspace select ${environment}'
             }
         }
