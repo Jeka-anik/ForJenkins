@@ -6,6 +6,6 @@ variable "ami_id" {
   type = "map"
 
   default = {
-    us-east-1    = "ami-035b3c7efe6d061d5"
+    us-east-1    = "ami-042e8287309f5df03"
   }
 }
