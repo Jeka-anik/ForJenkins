@@ -3,6 +3,6 @@ variable "region" {
 }
 
 variable "ami_id" {
-  type = "string"
+  type = string
   default = "ami-042e8287309f5df03"
 }
