@@ -27,7 +27,7 @@ pipeline {
 
         stage('TerraformFormat'){
             steps {
-                dir('/'){
+                dir('*/'){
                     sh "terraform fmt -list=true -write=false -diff=true"
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
 
         stage('TerraformValidate'){
             steps {
-                dir('/'){
+                dir('*/'){
                     sh "terraform validate"
                 }
             }
