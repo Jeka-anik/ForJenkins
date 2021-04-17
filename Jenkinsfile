@@ -32,12 +32,23 @@ pipeline {
         //            }
         //        }
         //    }
-
+        stage('Init') {
+            steps {
+                sh 'terraform init -input=false'
+                  }
+        }
+        stage('Create workspace') {
+            steps {
+                //sh 'terraform init -input=false'
+                sh 'terraform workspace new ${environment}'
+                sh 'pwd; terraform workspace select ${environment}'
+            }
+        }
         stage('Plan') {
             steps {
-                sh "terraform init -input=false"
-               // sh "terraform workspace new ${environment}"
-                sh "pwd; terraform workspace select ${environment}"
+                //sh 'terraform init -input=false'
+                //sh 'terraform workspace new ${environment}'
+                //sh 'pwd; terraform workspace select ${environment}'
                 sh "pwd; terraform plan -input=false -out tfplan"
                 sh "pwd; terraform show -no-color tfplan > tfplan.txt"
             }
