@@ -64,7 +64,8 @@ pipeline {
                     try {
                         input message: 'Can you please confirm the apply', ok: 'Ready to Apply the Config'
                         apply = true
-                    } catch (err) {
+                    } catch (err) 
+                    {
                         apply = false
                          currentBuild.result = 'UNSTABLE'
                     }
