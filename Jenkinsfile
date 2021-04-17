@@ -60,15 +60,14 @@ pipeline {
         stage('TerraformApply'){
             steps {
                 script{
-                    def apply = false
-                    try {
-                        input message: 'Can you please confirm the apply', ok: 'Ready to Apply the Config'
-                        apply = true
-                    } catch (err) 
-                    {
-                        apply = false
-                         currentBuild.result = 'UNSTABLE'
-                    }
+                  //  def apply = false
+                  //  try {
+                  //      input message: 'Can you please confirm the apply', ok: 'Ready to Apply the Config'
+                  //      apply = true
+                  //  } catch (err) {
+                  //      apply = false
+                  //       currentBuild.result = 'UNSTABLE'
+                  //  }
                     if(apply){
                         dir('ec2_pipeline/'){
                             unstash "terraform-plan"
