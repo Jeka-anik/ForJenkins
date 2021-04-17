@@ -8,7 +8,7 @@ pipeline {
         string(name: 'WORKSPACE', defaultValue: 'development', description:'setting up workspace for terraform')
     }
     environment {
-        TF_HOME = tool('terraform10210')
+        TF_HOME = tool('terraform10210')Masking supported pattern matches of 
         TF_IN_AUTOMATION = "true"
         PATH = "$TF_HOME:$PATH"
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
@@ -17,7 +17,7 @@ pipeline {
     stages {
             stage('TerraformInit'){
             steps {
-                dir('/'){
+                dir('ec2_pipeline/'){
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
@@ -27,7 +27,7 @@ pipeline {
 
         stage('TerraformFormat'){
             steps {
-                dir('*/'){
+                dir('ec2_pipeline/'){
                     sh "terraform fmt -list=true -write=false -diff=true"
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
 
         stage('TerraformValidate'){
             steps {
-                dir('*/'){
+                dir('ec2_pipeline/'){
                     sh "terraform validate"
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
 
         stage('TerraformPlan'){
             steps {
-                dir('/'){
+                dir('ec2_pipeline/'){
                     script {
                         //try {
                         //    sh "terraform workspace new ${params.WORKSPACE}"
@@ -69,7 +69,7 @@ pipeline {
                          currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        dir('/'){
+                        dir('ec2_pipeline/'){
                             unstash "terraform-plan"
                             sh 'terraform apply terraform.tfplan'
                         }
