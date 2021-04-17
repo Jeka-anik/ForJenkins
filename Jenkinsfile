@@ -14,9 +14,9 @@ pipeline {
 
    agent  any
     
-        tools {
-        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform10210"
-    }
+    //    tools {
+    //    "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform10210"
+    //}
     //    options {
     //            timestamps ()
     //            ansiColor('xterm')
