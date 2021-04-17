@@ -34,7 +34,7 @@ pipeline {
         //    }
         stage('Init') {
             steps {
-                sh 'terraform init -input=false'
+                sh 'terraform init -input=true'
                   }
         }
         stage('Create workspace') {
