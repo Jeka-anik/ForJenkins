@@ -8,7 +8,7 @@ pipeline {
         string(name: 'WORKSPACE', defaultValue: 'development', description:'setting up workspace for terraform')
     }
     environment {
-        TF_HOME = tool('terraform10210')Masking supported pattern matches of 
+        TF_HOME = tool('terraform10210') //Masking supported pattern matches of 
         TF_IN_AUTOMATION = "true"
         PATH = "$TF_HOME:$PATH"
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
